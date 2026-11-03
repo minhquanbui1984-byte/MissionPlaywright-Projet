@@ -32,6 +32,8 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+  //reporter: [ ['line'], [ 'allure-playwright', { resultsDir: 'allure-results', detail: true, suiteTitle: true, } ] ], 
+  /*Reporting allure*/
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',

@@ -1,9 +1,10 @@
 import { test, expect } from './FixturesCheckout';
+import { faker } from '@faker-js/faker';
 
 test.beforeEach(async ({ login }) => {
-    await login.page.goto('https://practice.missionplaywright.fr/exercises/checkout-form');
+    await login.page.goto(process.env.URL!);
     await login.page.getByTestId('login-link').click();
-    await login.login('email_compte', 'mot_de_passe_compte');
+    await login.login(process.env.EMAIL!, process.env.PASSWORD!);
     await expect(login.page.getByText('Mon compte')).toBeVisible();
 });
 
