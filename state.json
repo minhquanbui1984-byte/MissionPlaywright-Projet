@@ -1,0 +1,14 @@
+{
+  "cookies": [],
+  "origins": [
+    {
+      "origin": "https://practice.missionplaywright.fr",
+      "localStorage": [
+        {
+          "name": "sb-dqeocrbdmhpxgqqglyxn-auth-token",
+          "value": "{\"access_token\":\"eyJhbGciOiJFUzI1NiIsImtpZCI6IjFlNjVhNDc2LTVjYWQtNDVjNi05ZDk5LTYwYzcwMTU0MGQ5NSIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2RxZW9jcmJkbWhweGdxcWdseXhuLnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiI0YTJmNDk4ZS1hZWNhLTRkZWMtYjhmNy1iOGQzNzJjMTIyMjkiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzkzMjk4Nzg2LCJpYXQiOjE3OTMyOTUxODYsImVtYWlsIjoibWluaF9xdWFuX2J1aUB5YWhvby5mciIsInBob25lIjoiIiwiYXBwX21ldGFkYXRhIjp7InByb3ZpZGVyIjoiZW1haWwiLCJwcm92aWRlcnMiOlsiZW1haWwiXX0sInVzZXJfbWV0YWRhdGEiOnsiZW1haWwiOiJtaW5oX3F1YW5fYnVpQHlhaG9vLmZyIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcnN0X25hbWUiOiJNaW5oIFF1w6JuIiwibGFzdF9uYW1lIjoiQnVpIiwicGhvbmVfdmVyaWZpZWQiOmZhbHNlLCJzdWIiOiI0YTJmNDk4ZS1hZWNhLTRkZWMtYjhmNy1iOGQzNzJjMTIyMjkifSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJhYWwiOiJhYWwxIiwiYW1yIjpbeyJtZXRob2QiOiJwYXNzd29yZCIsInRpbWVzdGFtcCI6MTc5MzI5NTE4Nn1dLCJzZXNzaW9uX2lkIjoiNjQzMGVjYzAtOGNhNC00Yzc4LThjOWEtZmQyMzg0ZGViYTcyIiwiaXNfYW5vbnltb3VzIjpmYWxzZX0.otrOqa2cY0j0dUD2PCbVc3hLhhXW_TEJ6ni9JQ1a96KQFPpMuHcw-5k-FQgiyYmoalLcZp1zamzIbJEvRJFdpg\",\"token_type\":\"bearer\",\"expires_in\":3600,\"expires_at\":1793298786,\"refresh_token\":\"suaqttxweppb\",\"user\":{\"id\":\"4a2f498e-aeca-4dec-b8f7-b8d372c12229\",\"aud\":\"authenticated\",\"role\":\"authenticated\",\"email\":\"minh_quan_bui@yahoo.fr\",\"email_confirmed_at\":\"2026-10-29T10:42:10.829691Z\",\"phone\":\"\",\"confirmation_sent_at\":\"2026-10-29T10:41:58.213025Z\",\"confirmed_at\":\"2026-10-29T10:42:10.829691Z\",\"last_sign_in_at\":\"2026-10-29T17:33:05.894516419Z\",\"app_metadata\":{\"provider\":\"email\",\"providers\":[\"email\"]},\"user_metadata\":{\"email\":\"minh_quan_bui@yahoo.fr\",\"email_verified\":true,\"first_name\":\"Minh Quân\",\"last_name\":\"Bui\",\"phone_verified\":false,\"sub\":\"4a2f498e-aeca-4dec-b8f7-b8d372c12229\"},\"identities\":[{\"identity_id\":\"f06afe8b-c5c9-41d4-823a-6d79e502f6f1\",\"id\":\"4a2f498e-aeca-4dec-b8f7-b8d372c12229\",\"user_id\":\"4a2f498e-aeca-4dec-b8f7-b8d372c12229\",\"identity_data\":{\"email\":\"minh_quan_bui@yahoo.fr\",\"email_verified\":true,\"first_name\":\"Minh Quân\",\"last_name\":\"Bui\",\"phone_verified\":false,\"sub\":\"4a2f498e-aeca-4dec-b8f7-b8d372c12229\"},\"provider\":\"email\",\"last_sign_in_at\":\"2026-10-29T10:41:58.193505Z\",\"created_at\":\"2026-10-29T10:41:58.193553Z\",\"updated_at\":\"2026-10-29T10:41:58.193553Z\",\"email\":\"minh_quan_bui@yahoo.fr\"}],\"created_at\":\"2026-10-29T10:41:58.102191Z\",\"updated_at\":\"2026-10-29T17:33:05.983198Z\",\"is_anonymous\":false},\"weak_password\":null}"
+        }
+      ]
+    }
+  ]
+}
