@@ -18,7 +18,10 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Set up environment variables
-      run: $env: ENV="local"
+      run: |
+        echo "URL=${{ secrets.URL }}" >> $GITHUB_ENV
+        echo "EMAIL=${{ secrets.EMAIL }}" >> $GITHUB_ENV
+        echo "PASSWORD=${{ secrets.PASSWORD }}" >> $GITHUB_ENV
     - name: Run Playwright tests
       run: npx playwright test
     - uses: actions/upload-artifact@v4
