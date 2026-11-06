@@ -17,20 +17,32 @@ test.beforeEach(async ({addToCart}) => {
 });
 
 test('Checkout without account connected', async ({ shipping, login, payment }) => {
-    await shipping.accessCheckout();
-    await login.loginFromCheckout(process.env.EMAIL!, process.env.PASSWORD!);
-    await shipping.accessCheckout();
-    await expect(shipping.page.getByTestId('shipping-email-input')).toHaveValue(process.env.EMAIL!);
-    await shipping.fillShippingForm(FirstName, LastName, PhoneNumber, Address, City, PostalCode);
-    await payment.fillPaymentForm(CardNumber, CardHolder, CardExpiry, CardCvv);
+    
+    await test.step('Access checkout and login', async () => {
+        await shipping.accessCheckout();
+        await login.loginFromCheckout(process.env.EMAIL!, process.env.PASSWORD!);
+    });
+
+    await test.step('Fill shipping form and payment form', async () => {
+        await shipping.accessCheckout();
+        await expect(shipping.page.getByTestId('shipping-email-input')).toHaveValue(process.env.EMAIL!);
+        await shipping.fillShippingForm(FirstName, LastName, PhoneNumber, Address, City, PostalCode);
+        await payment.fillPaymentForm(CardNumber, CardHolder, CardExpiry, CardCvv);
+    });
 });
 
 test('Checkout with account connected', async ({ shipping, login, payment }) => {
-    await login.login(process.env.EMAIL!, process.env.PASSWORD!);
-    await shipping.accessCheckout();
-    await expect(shipping.page.getByTestId('shipping-email-input')).toHaveValue(process.env.EMAIL!);
-    await shipping.fillShippingForm(FirstName, LastName, PhoneNumber, Address, City, PostalCode);
-    await payment.fillPaymentForm(CardNumber, CardHolder, CardExpiry, CardCvv);
+
+    await test.step('Login and access checkout', async () => {
+        await login.login(process.env.EMAIL!, process.env.PASSWORD!);
+        await shipping.accessCheckout();
+    });
+
+    await test.step('Fill shipping form and payment form', async () => {
+        await expect(shipping.page.getByTestId('shipping-email-input')).toHaveValue(process.env.EMAIL!);
+        await shipping.fillShippingForm(FirstName, LastName, PhoneNumber, Address, City, PostalCode);
+        await payment.fillPaymentForm(CardNumber, CardHolder, CardExpiry, CardCvv);
+    });
 });
 
 
