@@ -11,6 +11,7 @@ export class LoginPage {
     readonly LoginMessage: Locator;
     readonly loginButton: Locator;
     readonly CheckoutLoginButton: Locator;
+    readonly FailedConnectionMessage: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -23,14 +24,14 @@ export class LoginPage {
         this.LoginMessage = page.getByText('Connexion réussie', { exact: true });
         this.loginButton = page.getByTestId('login-button');
         this.CheckoutLoginButton = page.getByTestId('checkout-login-button');
+        this.FailedConnectionMessage = page.getByText('Erreur de connexion', { exact: true });
     }
 
     async login(email: string, password: string) {
         await this.loginButton.click();
-
         await expect(this.loginTab).toBeVisible();
-        await this.loginTab.click();
 
+        await this.loginTab.click();
         await this.emailInput.fill(email);
         await this.passwordInput.fill(password);
         await this.loginSubmitButton.click();
@@ -41,16 +42,35 @@ export class LoginPage {
     async logout() {
         await this.userMenuButton.click();
         await this.logoutButton.click();
+
         await expect(this.loginButton).toBeVisible();
     }
 
     async loginFromCheckout(email: string, password: string) {
         await this.CheckoutLoginButton.click();
+
         await expect(this.loginTab).toBeVisible();
+
         await this.loginTab.click();
         await this.emailInput.fill(email);
         await this.passwordInput.fill(password);
         await this.loginSubmitButton.click();
+
         await expect(this.LoginMessage).toBeVisible();
     }
+
+    async failedLogin(email: string, password: string) {
+        await this.loginButton.click();
+
+        await expect(this.loginTab).toBeVisible();
+
+        await this.loginTab.click();
+        await this.emailInput.fill(email);
+        await this.passwordInput.fill(password);
+        await this.loginSubmitButton.click();
+        
+        await expect(this.FailedConnectionMessage).toBeVisible();
+    }
+
+
 }
