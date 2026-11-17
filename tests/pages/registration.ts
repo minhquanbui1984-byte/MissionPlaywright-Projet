@@ -1,4 +1,4 @@
-import { Page, Locator, test, expect} from '@playwright/test';
+import { Page, Locator, test, expect } from '@playwright/test';
 
 export class RegistrationPage {
     readonly page: Page;
@@ -12,6 +12,7 @@ export class RegistrationPage {
     readonly MissingMailMessage: Locator;
     readonly PasswordtoShort: Locator;
     readonly MismatchPasswordsMessage: Locator;
+    readonly EmailTooltip: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -25,6 +26,7 @@ export class RegistrationPage {
         this.MissingMailMessage = page.getByText('Adresse email invalide', { exact: true });
         this.PasswordtoShort = page.getByText('Le mot de passe doit contenir au moins 6 caractères');
         this.MismatchPasswordsMessage = page.getByText('Les mots de passe ne correspondent pas', { exact: true});
+        this.EmailTooltip = page.getByLabel('email');
     }
 
     async register(fullName: string, email: string, password: string) {
@@ -43,8 +45,10 @@ export class RegistrationPage {
     }
 
     async registerWithMismatchedPasswords(fullName: string, email: string, password: string, confirmPassword: string) {
+        
         await this.page.getByTestId('login-button').click();
         await expect (this.page.getByTestId('signup-tab')).toBeVisible();
+
         await this.page.getByTestId('signup-tab').click();
         await this.fullNameInput.fill(fullName);
         await this.emailInput.fill(email);
@@ -87,5 +91,33 @@ export class RegistrationPage {
         await this.registerButton.click();
 
         await expect (this.PasswordtoShort).toBeVisible();
+    }
+
+    async registerAccountwithIncompleteMail(fullName: string, email: string, emailat: string, password: string) {
+
+        await this.page.getByTestId('login-button').click();
+        await expect (this.page.getByTestId('signup-tab')).toBeVisible();
+        
+        await this.page.getByTestId('signup-tab').click();
+        await this.fullNameInput.fill(fullName);
+        await this.emailInput.fill(email);
+        await this.passwordInput.fill(password);
+        await this.confirmPasswordInput.fill(password);
+        await this.registerButton.click();
+
+        
+        
+        await test.step ('No @ in email', async () =>{
+            await expect (this.emailInput).toBeFocused();
+            await expect (this.EmailTooltip).toHaveJSProperty('validationMessage', `Please include an '@' in the email address. '${email}' is missing an '@'.`);
+        });
+
+        await this.emailInput.fill(emailat);
+        await this.registerButton.click();
+
+        await test.step ('No email domain', async () => {
+            await expect (this.emailInput).toBeFocused();
+            await expect (this.EmailTooltip).toHaveJSProperty('validationMessage', `Please enter a part following '@'. '${emailat}' is incomplete.`);
+        });
     }
 }
