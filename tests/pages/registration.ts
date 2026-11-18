@@ -13,6 +13,8 @@ export class RegistrationPage {
     readonly PasswordtoShort: Locator;
     readonly MismatchPasswordsMessage: Locator;
     readonly EmailTooltip: Locator;
+    readonly LoginButton: Locator;
+    readonly SignupTab: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -27,13 +29,15 @@ export class RegistrationPage {
         this.PasswordtoShort = page.getByText('Le mot de passe doit contenir au moins 6 caractères');
         this.MismatchPasswordsMessage = page.getByText('Les mots de passe ne correspondent pas', { exact: true});
         this.EmailTooltip = page.getByLabel('email');
+        this.LoginButton = page.getByTestId('login-button');
+        this.SignupTab = page.getByTestId('signup-tab');
     }
 
     async register(fullName: string, email: string, password: string) {
-        await this.page.getByTestId('login-button').click();
+        await this.LoginButton.click();
 
-        await expect (this.page.getByTestId('signup-tab')).toBeVisible();
-        await this.page.getByTestId('signup-tab').click();
+        await expect (this.SignupTab).toBeVisible();
+        await this.SignupTab.click();
 
         await this.fullNameInput.fill(fullName);
         await this.emailInput.fill(email);
@@ -46,10 +50,10 @@ export class RegistrationPage {
 
     async registerWithMismatchedPasswords(fullName: string, email: string, password: string, confirmPassword: string) {
         
-        await this.page.getByTestId('login-button').click();
-        await expect (this.page.getByTestId('signup-tab')).toBeVisible();
+        await this.LoginButton.click();
+        await expect (this.SignupTab).toBeVisible();
 
-        await this.page.getByTestId('signup-tab').click();
+        await this.SignupTab.click();
         await this.fullNameInput.fill(fullName);
         await this.emailInput.fill(email);
         await this.passwordInput.fill(password);
@@ -60,10 +64,10 @@ export class RegistrationPage {
     }
 
     async registerWithEmptyFields() {
-        await this.page.getByTestId('login-button').click();
-        await expect (this.page.getByTestId('signup-tab')).toBeVisible();
+        await this.LoginButton.click();
+        await expect (this.SignupTab).toBeVisible();
 
-        await this.page.getByTestId('signup-tab').click();
+        await this.SignupTab.click();
         await this.registerButton.click();
 
         await test.step ('No fullname', async () => {
@@ -80,10 +84,10 @@ export class RegistrationPage {
     }
 
     async registerWithShortPassword(fullName: string, email: string, password: string) {
-        await this.page.getByTestId('login-button').click();
-        await expect (this.page.getByTestId('signup-tab')).toBeVisible();
+        await this.LoginButton.click();
+        await expect (this.SignupTab).toBeVisible();
         
-        await this.page.getByTestId('signup-tab').click();
+        await this.SignupTab.click();
         await this.fullNameInput.fill(fullName);
         await this.emailInput.fill(email);
         await this.passwordInput.fill(password);
@@ -95,18 +99,16 @@ export class RegistrationPage {
 
     async registerAccountwithIncompleteMail(fullName: string, email: string, emailat: string, password: string) {
 
-        await this.page.getByTestId('login-button').click();
-        await expect (this.page.getByTestId('signup-tab')).toBeVisible();
+        await this.LoginButton.click();
+        await expect (this.SignupTab).toBeVisible();
         
-        await this.page.getByTestId('signup-tab').click();
+        await this.SignupTab.click();
         await this.fullNameInput.fill(fullName);
         await this.emailInput.fill(email);
         await this.passwordInput.fill(password);
         await this.confirmPasswordInput.fill(password);
         await this.registerButton.click();
 
-        
-        
         await test.step ('No @ in email', async () =>{
             await expect (this.emailInput).toBeFocused();
             await expect (this.EmailTooltip).toHaveJSProperty('validationMessage', `Please include an '@' in the email address. '${email}' is missing an '@'.`);

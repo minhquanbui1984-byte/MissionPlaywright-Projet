@@ -4,6 +4,7 @@ import { AddToCartPage } from './pages/addtocart';
 import { RegistrationPage } from './pages/registration';
 import { ShippingFormPage } from './pages/shippingform';
 import { PaymentformPage } from './pages/paymentform';
+import { AccountPage } from './pages/account';
 
 type Fixtures = {
     login: LoginPage;
@@ -11,6 +12,7 @@ type Fixtures = {
     registration: RegistrationPage;
     shipping: ShippingFormPage;
     payment: PaymentformPage;
+    account: AccountPage;
 };
 
 const test = base.extend<Fixtures>({
@@ -32,6 +34,10 @@ const test = base.extend<Fixtures>({
 
     payment: async ({ page }, use) => {
         await use (new PaymentformPage(page));
+    },
+
+    account: async ({ page }, use) => {
+        await use (new AccountPage(page));
     }
 });
 

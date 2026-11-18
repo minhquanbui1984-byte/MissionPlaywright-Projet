@@ -38,7 +38,7 @@ test ('Create account with incomplete mail', async ({ registration }) => {
     const Lastname = faker.person.lastName();
     const Email = `${Firstname}.${Lastname}`;
     const Fullname = `${Firstname} ${Lastname}`;
-    const Emailat = `${Firstname}.${Lastname}@`
+    const Emailat = `${Firstname}.${Lastname}@`;
 
     await test.step ('Create account with incomplete mail', async () => {
         await registration.registerAccountwithIncompleteMail(Fullname, Email, Emailat, faker.internet.password());
