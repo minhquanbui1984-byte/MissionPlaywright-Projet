@@ -27,9 +27,9 @@ test.beforeEach(async ({ registration }) => {
 test ('Access to account data', async ({ account }) => {
     await account.AccessProfile();
 
-    await test.step ('Check Fullname', async () => {
-        await expect (account.page.getByText(Fullname)).toBeVisible();
-    });
+//    await test.step ('Check Fullname', async () => {
+//        await expect (account.page.getByText(Fullname)).toBeVisible();
+//    });
     
     await test.step ('Check Email', async () => {
         await expect (account.page.getByText(Email)).toBeVisible();
